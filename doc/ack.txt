@@ -11,60 +11,60 @@ This plugin is only available if 'compatible' is not set.
 ==============================================================================
 INTRODUCTION                                                             *ack*
 
-This plugin is a front for the Perl module App::Ack.  Ack can be used as a
+This plugin is a front for the Perl module App::AG.  AG can be used as a
 replacement for grep.  This plugin will allow you to run ack from vim, and
 shows the results in a split window.
 
-:Ack[!] [options] {pattern} [{directory}]                               *:Ack*
+:AG[!] [options] {pattern} [{directory}]                               *:AG*
 
     Search recursively in {directory} (which defaults to the current
     directory) for the {pattern}.  Behaves just like the |:grep| command, but
     will open the |Quickfix| window for you. If [!] is not given the first
     occurrence is jumped to.
 
-:AckAdd [options] {pattern} [{directory}]                            *:AckAdd*
+:AGAdd [options] {pattern} [{directory}]                            *:AGAdd*
 
-    Just like |:Ack|, but instead of making a new list, the matches are
+    Just like |:AG|, but instead of making a new list, the matches are
     appended to the current |quickfix| list.
 
-:AckFromSearch [{directory}]                                  *:AckFromSearch*
+:AGFromSearch [{directory}]                                  *:AGFromSearch*
 
-    Just like |:Ack| but the pattern is from previous search.
+    Just like |:AG| but the pattern is from previous search.
 
-:LAck [options] {pattern} [{directory}]                                *:LAck*
+:LAG [options] {pattern} [{directory}]                                *:LAG*
 
-    Just like |:Ack| but instead of the |quickfix| list, matches are placed in
+    Just like |:AG| but instead of the |quickfix| list, matches are placed in
     the current |location-list|.
 
-:LAckAdd [options] {pattern} [{directory}]                          *:LAckAdd*
+:LAGAdd [options] {pattern} [{directory}]                          *:LAGAdd*
 
-    Just like |:AckAdd| but instead of the |quickfix| list, matches are added
+    Just like |:AGAdd| but instead of the |quickfix| list, matches are added
     to the current |location-list|
 
-:AckFile [options] {pattern} [{directory}]                          *:AckFile*
+:AGFile [options] {pattern} [{directory}]                          *:AGFile*
 
     Search recursively in {directory} (which defaults to the current
     directory) for filenames matching the {pattern}.  Behaves just like the
     |:grep| command, but will open the |Quickfix| window for you.
 
-:AckHelp[!] [options] {pattern}                                      *:AckHelp*
+:AGHelp[!] [options] {pattern}                                      *:AGHelp*
 
     Search vim documentation files for the {pattern}.  Behaves just like the
-    |:Ack| command, but searches only vim documentation .txt files
+    |:AG| command, but searches only vim documentation .txt files
 
-:LAckHelp [options] {pattern}                                        *:LAckHelp*
+:LAGHelp [options] {pattern}                                        *:LAGHelp*
 
-    Just like |:AckHelp| but instead of the |quickfix| list, matches are placed
+    Just like |:AGHelp| but instead of the |quickfix| list, matches are placed
     in the current |location-list|.
 
-:AckWindow[!] [options] {pattern}                                 *:AckWindow*
+:AGWindow[!] [options] {pattern}                                 *:AGWindow*
 
     Search all buffers visible in the screen (current tab page only) files for
     the {pattern}.
 
-:LAckWindow [options] {pattern}                                   *:LAckWindow*
+:LAGWindow [options] {pattern}                                   *:LAGWindow*
 
-    Just like |:AckWindow| but instead of the |quickfix| list, matches are
+    Just like |:AGWindow| but instead of the |quickfix| list, matches are
     placed in the current |location-list|.
 
 Files containing the search term will be listed in the split window, along
@@ -74,7 +74,7 @@ line.
 
 Note that if you are using Dispatch.vim with |g:ack_use_dispatch|, location
 lists are not supported, because Dispatch does not support them at this time.
-`:LAck` versions of commands above will give a warning and proceed to use the
+`:LAG` versions of commands above will give a warning and proceed to use the
 quickfix list instead.
 
 See http://beyondgrep.com/ for more information on searching with ack.
@@ -100,7 +100,7 @@ Default: " -s -H --nocolor --nogroup --column"
 
 Use this option to specify the default arguments given to `ack`. This is only
 used if |g:ackprg| has not been customized from the default--if you are using
-a custom search program instead of Ack, set your preferred options in
+a custom search program instead of AG, set your preferred options in
 |g:ackprg|.
 
 NOTE: This option may be deprecated in the future. ~
@@ -277,14 +277,14 @@ ISSUES AND FAQ                                            *ack-issues-and-faq*
 
 I don't want to jump to the first result automatically.~
 
-    Use `:Ack!`, with bang. If you want this behavior most of the time, you
+    Use `:AG!`, with bang. If you want this behavior most of the time, you
     might like an abbreviation or mapping in your personal config, something
     like these:
 >
-        cnoreabbrev Ack Ack!
-        nnoremap <Leader>a :Ack!<Space>
+        cnoreabbrev AG AG!
+        nnoremap <Leader>a :AG!<Space>
 <
-    Most of the `:[L]Ack*` commands support this. Note that this behavior
+    Most of the `:[L]AG*` commands support this. Note that this behavior
     follows the convention of Vim's built-in |:grep| and |:make| commands.
 
 I use NERDTree and opening ack.vim results in a vertical split displacing it.~

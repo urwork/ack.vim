@@ -51,7 +51,7 @@ NeoBundle 'mileszs/ack.vim'
 
 ## Usage
 
-    :Ack [options] {pattern} [{directories}]
+    :AG [options] {pattern} [{directories}]
 
 Search recursively in `{directories}` (which defaults to the current directory)
 for the `{pattern}`.
@@ -62,7 +62,7 @@ a line in this window will open the file and place the cursor on the matching
 line.
 
 Just like where you use `:grep`, `:grepadd`, `:lgrep`, and :`lgrepadd`, you can
-use `:Ack`, `:AckAdd`, `:LAck`, and `:LAckAdd` respectively. (See `:help Ack`
+use `:AG`, `:AGAdd`, `:LAG`, and `:LAGAdd` respectively. (See `:help AG`
 after installing, or [`doc/ack.txt`][doc] in the repo, for more information.)
 
 For more ack help see [ack documentation](http://beyondgrep.com/documentation/).
@@ -88,11 +88,11 @@ The quickfix results window is augmented with these convenience mappings:
 ### Gotchas
 
 To search for a pattern that contains whitespace, you need to enclose the
-pattern in single quotes. For example: `:Ack 'foo bar'` to search for
+pattern in single quotes. For example: `:AG 'foo bar'` to search for
 'foo bar'.
 
 Some characters have special meaning, and need to be escaped in your search
-pattern. For instance, `#`. You need to escape it with `:Ack '\\\#define
+pattern. For instance, `#`. You need to escape it with `:AG '\\\#define
 foo'` to search for '#define foo'. See [issue #5].
 
 [issue #5]: https://github.com/mileszs/ack.vim/issues/5
@@ -103,7 +103,7 @@ foo'` to search for '#define foo'. See [issue #5].
 
 Absolutely, and probably other tools if their output is similar or you can
 write a pattern match for it--just set `g:ackprg`. If you like, you can fall
-back to Ack in case you use your vimrc on a system without Ag available:
+back to AG in case you use your vimrc on a system without Ag available:
 
 ```vim
 if executable('ag')
@@ -111,7 +111,7 @@ if executable('ag')
 endif
 ```
 
-Since Ack is quite portable you might check a copy of it into your dotfiles
+Since AG is quite portable you might check a copy of it into your dotfiles
 repository in `~/bin` so you'll nearly always have it available.
 
 #### What's the difference from ag.vim?
@@ -121,20 +121,20 @@ Well... not a lot really.
 Present maintainer, yours truly, [kind of wishes they never forked][sadface],
 contributes to both, and wouldn't mind seeing them merged again. ag.vim got a
 nice code clean-up (which ack.vim is now hopefully getting), and ack.vim picked
-up a few features that haven't made their way to ag.vim, like `:AckWindow`,
+up a few features that haven't made their way to ag.vim, like `:AGWindow`,
 optional background search execution with [vim-dispatch], and auto-previewing.
 
 #### I don't want to jump to the first result automatically. ####
 
-Use `:Ack!`, with bang. If you want this behavior most of the time, you might
+Use `:AG!`, with bang. If you want this behavior most of the time, you might
 like an abbreviation or mapping in your personal config, something like these:
 
 ```vim
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+cnoreabbrev AG AG!
+nnoremap <Leader>a :AG!<Space>
 ```
 
-Most of the `:[L]Ack*` commands support this. Note that this behavior follows
+Most of the `:[L]AG*` commands support this. Note that this behavior follows
 the convention of Vim's built-in `:grep` and `:make` commands.
 
 [The Silver Searcher]: https://github.com/ggreer/the_silver_searcher

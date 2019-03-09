@@ -15,7 +15,7 @@ endif
 " Public API
 "-----------------------------------------------------------------------------
 
-function! ack#Ack(cmd, args) "{{{
+function! ack#AG(cmd, args) "{{{
   call s:Init(a:cmd)
   redraw
 
@@ -65,19 +65,19 @@ function! ack#Ack(cmd, args) "{{{
   call s:Highlight(l:grepargs)
 endfunction "}}}
 
-function! ack#AckFromSearch(cmd, args) "{{{
+function! ack#AGFromSearch(cmd, args) "{{{
   let search = getreg('/')
   " translate vim regular expression to perl regular expression.
   let search = substitute(search, '\(\\<\|\\>\)', '\\b', 'g')
-  call ack#Ack(a:cmd, '"' . search . '" ' . a:args)
+  call ack#AG(a:cmd, '"' . search . '" ' . a:args)
 endfunction "}}}
 
-function! ack#AckHelp(cmd, args) "{{{
+function! ack#AGHelp(cmd, args) "{{{
   let args = a:args . ' ' . s:GetDocLocations()
-  call ack#Ack(a:cmd, args)
+  call ack#AG(a:cmd, args)
 endfunction "}}}
 
-function! ack#AckWindow(cmd, args) "{{{
+function! ack#AGWindow(cmd, args) "{{{
   let files = tabpagebuflist()
 
   " remove duplicated filenames (files appearing in more than one window)
@@ -91,7 +91,7 @@ function! ack#AckWindow(cmd, args) "{{{
   let files = map(files, "shellescape(fnamemodify(v:val, ':p'))")
   let args = a:args . ' ' . join(files)
 
-  call ack#Ack(a:cmd, args)
+  call ack#AG(a:cmd, args)
 endfunction "}}}
 
 function! ack#ShowResults() "{{{
@@ -158,7 +158,7 @@ function! s:Highlight(args) "{{{
   call feedkeys(":let &hlsearch=1 \| echo \<CR>", "n")
 endfunction "}}}
 
-" Initialize state for an :Ack* or :LAck* search
+" Initialize state for an :AG* or :LAG* search
 function! s:Init(cmd) "{{{
   let s:searching_filepaths = (a:cmd =~# '-g$') ? 1 : 0
   let s:using_loclist       = (a:cmd =~# '^l') ? 1 : 0
@@ -219,7 +219,7 @@ function! s:SearchWithGrep(grepcmd, grepprg, grepargs, grepformat) "{{{
   endtry
 endfunction "}}}
 
-" Are we finding matching files, not lines? (the -g option -- :AckFile)
+" Are we finding matching files, not lines? (the -g option -- :AGFile)
 function! s:SearchingFilepaths() "{{{
   return get(s:, 'searching_filepaths', 0)
 endfunction "}}}
@@ -233,13 +233,13 @@ function! s:UsingListMappings() "{{{
   endif
 endfunction "}}}
 
-" Were we invoked with a :LAck command?
+" Were we invoked with a :LAG command?
 function! s:UsingLocList() "{{{
   return get(s:, 'using_loclist', 0)
 endfunction "}}}
 
 function! s:Warn(msg) "{{{
-  echohl WarningMsg | echomsg 'Ack: ' . a:msg | echohl None
+  echohl WarningMsg | echomsg 'AG: ' . a:msg | echohl None
 endf "}}}
 
 let g:autoloaded_ack = 1
